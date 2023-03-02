@@ -20,19 +20,23 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Holiday Book"
-        
+    fileprivate func setData() {
         let typeOne = TypeOneClass(model: model1,
                                    push: { [weak self] in
-                                        self?.pushDetailView()
-                                })
+            self?.pushDetailView()
+        })
         self.data.append(typeOne)
         let typeTwo = TypeTwoClass(model: model2)
         self.data.append(typeTwo)
         let typeThree = TypeThreeClass(model: model3, delegate: self)
         self.data.append(typeThree)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Holiday Book"
+        
+        setData()
         
         self.tableView.registerTableViewCell([String(describing: TypeOneCell.self),
                                           String(describing: TypeTwoCell.self),
